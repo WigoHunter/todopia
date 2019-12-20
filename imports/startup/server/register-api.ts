@@ -17,7 +17,7 @@ const typeDefs = [testSchema, ResolutionsSchema];
 const resolver = {
   Query: {
     hi() {
-      return "Hello World!";
+      return "Hello World!!";
     }
   }
 };

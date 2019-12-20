@@ -1,6 +1,7 @@
 import * as React from "react";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
+import ResolutionForm from "./ResolutionForm";
 
 const hiQuery = gql`
   {
@@ -27,6 +28,7 @@ const App: React.FC = () => {
   return (
     <div>
       <h1>{hi}</h1>
+      <ResolutionForm />
       <ul>
         {resolutions.map(resolution => (
           <li key={resolution._id}>{resolution.name}</li>
