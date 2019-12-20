@@ -3,6 +3,7 @@
     "target": "ES6",
     "skipLibCheck": true,
     "jsx": "react",
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true
   }
 }
