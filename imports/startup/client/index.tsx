@@ -7,10 +7,9 @@ import { Accounts } from "meteor/accounts-base";
 
 import App from "../../ui/App";
 
-const cache = new InMemoryCache();
-
 const client = new ApolloClient({
   uri: Meteor.absoluteUrl("graphql"),
+  cache: new InMemoryCache(),
   request: operation => {
     const token = Accounts["_storedLoginToken"]() || "";
 
@@ -19,8 +18,7 @@ const client = new ApolloClient({
         authorization: token
       }
     }));
-  },
-  cache
+  }
 });
 
 const ApolloApp = () => (
