@@ -3,8 +3,8 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
 const CREATE_RESOLUTION = gql`
-  mutation createResolution {
-    createResolution {
+  mutation createResolution($name: String!) {
+    createResolution(name: $name) {
       _id
     }
   }
@@ -12,10 +12,15 @@ const CREATE_RESOLUTION = gql`
 
 const ResolutionForm = () => {
   const [name, setName] = React.useState("");
-  const [createResolution, { data }] = useMutation(CREATE_RESOLUTION);
+  const [createResolution] = useMutation(CREATE_RESOLUTION);
 
   const submitForm = () => {
-    createResolution({});
+    createResolution({
+      variables: {
+        name
+      },
+      refetchQueries: ["getData"]
+    });
   };
 
   return (

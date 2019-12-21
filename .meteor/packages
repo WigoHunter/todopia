@@ -15,5 +15,8 @@ standard-minifier-js@2.5.0    # JS minifier run for production mode
 es5-shim@4.8.0                # ECMAScript 5 compatibility for older browsers
 typescript              # Enable TypeScript syntax in .ts and .tsx modules
 shell-server@0.4.0            # Server-side component of the `meteor shell` command
-apollo@3.0.1
+apollo
 webapp
+orionsoft:graphql-compiler
+accounts-password
+accounts-base
