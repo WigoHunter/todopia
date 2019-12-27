@@ -7,6 +7,7 @@ import LoginForm from "./LoginForm";
 import GoalForm from "./GoalForm";
 import Goal from "./resolutions/Goal";
 import { Meteor } from "meteor/meteor";
+import { getData } from "../graphql/types/getData";
 
 const ResolutionsQuery = gql`
   query getData {
@@ -26,7 +27,7 @@ const ResolutionsQuery = gql`
 `;
 
 const App: React.FC = () => {
-  const { client, loading, error, data } = useQuery(ResolutionsQuery);
+  const { client, loading, error, data } = useQuery<getData>(ResolutionsQuery);
 
   if (loading) {
     return null;

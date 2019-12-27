@@ -1,6 +1,10 @@
 import * as React from "react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
+import {
+  createResolution,
+  createResolutionVariables
+} from "../graphql/types/createResolution";
 
 const CREATE_RESOLUTION = gql`
   mutation createResolution($name: String!) {
@@ -12,7 +16,10 @@ const CREATE_RESOLUTION = gql`
 
 const ResolutionForm = () => {
   const [name, setName] = React.useState("");
-  const [createResolution] = useMutation(CREATE_RESOLUTION);
+  const [createResolution] = useMutation<
+    createResolution,
+    createResolutionVariables
+  >(CREATE_RESOLUTION);
 
   const submitForm = () => {
     createResolution({

@@ -4,7 +4,8 @@
   "scripts": {
     "start": "meteor run",
     "lint": "eslint .",
-    "pretest": "npm run lint --silent"
+    "pretest": "npm run lint --silent",
+    "gen": "apollo codegen:generate --excludes=node_modules/* --includes=**/*.tsx --endpoint http://localhost:3000/graphql --target typescript --tagName=gql --outputFlat imports/graphql/types"
   },
   "eslintConfig": {
     "extends": "@meteorjs/eslint-config-meteor"
@@ -41,6 +42,7 @@
     "eslint-plugin-import": "^2.19.1",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-meteor": "^6.0.0",
-    "eslint-plugin-react": "^7.17.0"
+    "eslint-plugin-react": "^7.17.0",
+    "graphqlgen": "^0.6.0-rc9"
   }
 }

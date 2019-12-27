@@ -1,6 +1,7 @@
 import * as React from "react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
+import { createGoal, createGoalVariables } from "../graphql/types/createGoal";
 
 const CREATE_GOAL = gql`
   mutation createGoal($name: String!, $resolutionId: String!) {
@@ -16,7 +17,9 @@ interface Props {
 
 const GoalForm: React.FC<Props> = ({ resolutionId }) => {
   const [name, setName] = React.useState("");
-  const [createGoal] = useMutation(CREATE_GOAL);
+  const [createGoal] = useMutation<createGoal, createGoalVariables>(
+    CREATE_GOAL
+  );
 
   const submitForm = () => {
     createGoal({
