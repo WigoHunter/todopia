@@ -27,6 +27,7 @@ const ResolutionsQuery = gql`
   fragment goalFragment on Goal {
     _id
     name
+    completed
   }
 `;
 

@@ -10,7 +10,7 @@ import UserResolvers from "../../api/users/resolvers";
 import GoalsSchema from "../../graphql/Goal.graphql";
 import GoalsResolver from "../../api/goals/resolvers";
 
-////
+//////
 const typeDefs = [ResolutionsSchema, UserSchema, GoalsSchema];
 const resolvers = merge(ResolutionsResolvers, UserResolvers, GoalsResolver);
 

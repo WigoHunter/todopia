@@ -1,5 +1,12 @@
 import { Mongo } from "meteor/mongo";
 
-const Goals = new Mongo.Collection("goals");
+export interface Goal {
+  _id: string;
+  name: string;
+  resolutionId: string;
+  completed: boolean;
+}
+
+const Goals: Mongo.Collection<Goal> = new Mongo.Collection<Goal>("goals");
 
 export default Goals;

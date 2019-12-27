@@ -3,12 +3,18 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: goalFragment
+// GraphQL mutation operation: toggleGoal
 // ====================================================
 
-export interface goalFragment {
+export interface toggleGoal_toggleGoal {
   __typename: "Goal";
   _id: string | null;
-  name: string | null;
-  completed: boolean | null;
+}
+
+export interface toggleGoal {
+  toggleGoal: toggleGoal_toggleGoal | null;
+}
+
+export interface toggleGoalVariables {
+  id: string;
 }

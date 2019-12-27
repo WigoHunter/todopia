@@ -10,6 +10,7 @@ export interface getData_resolutions_goals {
   __typename: "Goal";
   _id: string | null;
   name: string | null;
+  completed: boolean | null;
 }
 
 export interface getData_resolutions {
