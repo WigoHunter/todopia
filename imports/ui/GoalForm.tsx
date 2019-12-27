@@ -3,6 +3,8 @@ import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 import { createGoal, createGoalVariables } from "../graphql/types/createGoal";
 
+import { Input, Button } from "antd";
+
 const CREATE_GOAL = gql`
   mutation createGoal($name: String!, $resolutionId: String!) {
     createGoal(name: $name, resolutionId: $resolutionId) {
@@ -33,8 +35,8 @@ const GoalForm: React.FC<Props> = ({ resolutionId }) => {
 
   return (
     <div>
-      <input type="text" value={name} onChange={e => setName(e.target.value)} />
-      <button onClick={submitForm}>Submit</button>
+      <Input type="text" value={name} onChange={e => setName(e.target.value)} />
+      <Button onClick={submitForm}>Submit</Button>
     </div>
   );
 };

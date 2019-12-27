@@ -9,6 +9,9 @@ import Goal from "./resolutions/Goal";
 import { Meteor } from "meteor/meteor";
 import { getData } from "../graphql/types/getData";
 
+import Button from "antd/es/button";
+import "./less/App";
+
 const ResolutionsQuery = gql`
   query getData {
     resolutions {
