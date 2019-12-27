@@ -5,25 +5,15 @@ import { getUser } from "meteor/apollo";
 
 import ResolutionsSchema from "../../graphql/Resolutions.graphql";
 import ResolutionsResolvers from "../../api/resolutions/resolvers";
+import UserSchema from "../../graphql/User.graphql";
+import UserResolvers from "../../api/users/resolvers";
+import GoalsSchema from "../../graphql/Goal.graphql";
+import GoalsResolver from "../../api/goals/resolvers";
 
-const testSchema = gql`
-  type Query {
-    hi: String
-    resolutions: [Resolution]
-  }
-`;
+////
+const typeDefs = [ResolutionsSchema, UserSchema, GoalsSchema];
+const resolvers = merge(ResolutionsResolvers, UserResolvers, GoalsResolver);
 
-const typeDefs = [testSchema, ResolutionsSchema];
-
-const resolver = {
-  Query: {
-    hi() {
-      return "Hello World!!";
-    }
-  }
-};
-
-const resolvers = merge(resolver, ResolutionsResolvers);
 const server = new ApolloServer({
   typeDefs,
   resolvers,

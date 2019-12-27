@@ -2,22 +2,27 @@ import * as React from "react";
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 
-const CREATE_RESOLUTION = gql`
-  mutation createResolution($name: String!) {
-    createResolution(name: $name) {
+const CREATE_GOAL = gql`
+  mutation createGoal($name: String!, $resolutionId: String!) {
+    createGoal(name: $name, resolutionId: $resolutionId) {
       _id
     }
   }
 `;
 
-const ResolutionForm = () => {
+interface Props {
+  resolutionId: string;
+}
+
+const GoalForm: React.FC<Props> = ({ resolutionId }) => {
   const [name, setName] = React.useState("");
-  const [createResolution] = useMutation(CREATE_RESOLUTION);
+  const [createGoal] = useMutation(CREATE_GOAL);
 
   const submitForm = () => {
-    createResolution({
+    createGoal({
       variables: {
-        name
+        name,
+        resolutionId
       },
       refetchQueries: ["getData"]
     }).then(() => setName(""));
@@ -31,4 +36,4 @@ const ResolutionForm = () => {
   );
 };
 
-export default ResolutionForm;
+export default GoalForm;

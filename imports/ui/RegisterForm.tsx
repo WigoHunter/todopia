@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Accounts } from "meteor/accounts-base";
 
-const RegisterForm = () => {
+const RegisterForm = ({ client }) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -15,6 +15,10 @@ const RegisterForm = () => {
       },
       error => {
         console.log(error);
+
+        if (!error) {
+          client.resetStore();
+        }
       }
     );
   };

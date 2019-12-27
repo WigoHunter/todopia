@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Meteor } from "meteor/meteor";
 
-const LoginForm = () => {
+const LoginForm = ({ client }) => {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
@@ -10,6 +10,10 @@ const LoginForm = () => {
 
     Meteor.loginWithPassword(email, password, error => {
       console.log(error);
+
+      if (!error) {
+        client.resetStore();
+      }
     });
   };
 

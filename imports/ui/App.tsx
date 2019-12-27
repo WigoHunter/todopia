@@ -4,20 +4,29 @@ import { useQuery } from "@apollo/react-hooks";
 import ResolutionForm from "./ResolutionForm";
 import RegisterForm from "./RegisterForm";
 import LoginForm from "./LoginForm";
+import GoalForm from "./GoalForm";
+import Goal from "./resolutions/Goal";
 import { Meteor } from "meteor/meteor";
 
-const hiQuery = gql`
+const ResolutionsQuery = gql`
   query getData {
-    hi
     resolutions {
       _id
       name
+      goals {
+        _id
+        name
+      }
+    }
+
+    user {
+      _id
     }
   }
 `;
 
 const App: React.FC = () => {
-  const { loading, error, data } = useQuery(hiQuery);
+  const { client, loading, error, data } = useQuery(ResolutionsQuery);
 
   if (loading) {
     return null;
@@ -27,17 +36,40 @@ const App: React.FC = () => {
     return <div>Error</div>;
   }
 
-  const { hi, resolutions } = data;
+  const _logout = () => {
+    Meteor.logout();
+    client.resetStore();
+  };
+
+  const {
+    resolutions,
+    user: { _id: userId }
+  } = data;
   return (
     <div>
-      <h1>{hi}</h1>
-      <RegisterForm />
-      <LoginForm />
+      <h1>Hello World!</h1>
+
+      {userId ? (
+        <button onClick={_logout}>logout</button>
+      ) : (
+        <>
+          <RegisterForm client={client} />
+          <LoginForm client={client} />
+        </>
+      )}
+
       <ResolutionForm />
-      <button onClick={() => Meteor.logout()}>logout</button>
       <ul>
         {resolutions.map(resolution => (
-          <li key={resolution._id}>{resolution.name}</li>
+          <li key={resolution._id}>
+            {resolution.name}
+            <ul>
+              {resolution.goals.map(goal => (
+                <Goal goal={goal} key={goal._id} />
+              ))}
+            </ul>
+            <GoalForm resolutionId={resolution._id} />
+          </li>
         ))}
       </ul>
     </div>
