@@ -15,14 +15,18 @@ const ResolutionsQuery = gql`
       _id
       name
       goals {
-        _id
-        name
+        ...goalFragment
       }
     }
 
     user {
       _id
     }
+  }
+
+  fragment goalFragment on Goal {
+    _id
+    name
   }
 `;
 
