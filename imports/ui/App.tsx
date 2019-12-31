@@ -5,7 +5,7 @@ import ResolutionForm from "./ResolutionForm";
 import RegisterForm from "./RegisterForm";
 import LoginForm from "./LoginForm";
 import GoalForm from "./GoalForm";
-import Goal from "./resolutions/Goal";
+import Goal, { goalFragment } from "./resolutions/Goal";
 import { Meteor } from "meteor/meteor";
 import { getData } from "../graphql/types/getData";
 
@@ -27,11 +27,7 @@ const ResolutionsQuery = gql`
     }
   }
 
-  fragment goalFragment on Goal {
-    _id
-    name
-    completed
-  }
+  ${goalFragment}
 `;
 
 const App: React.FC = () => {

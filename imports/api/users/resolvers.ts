@@ -1,9 +1,14 @@
 import Resolution from "../resolutions/resolutions";
+import { Meteor } from "meteor/meteor";
 
 export default {
   Query: {
     user(parent, args, { user }) {
       return user || {};
+    },
+
+    users() {
+      return Meteor.users.find().fetch();
     }
   },
 

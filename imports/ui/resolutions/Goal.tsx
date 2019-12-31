@@ -5,7 +5,7 @@ import {
   toggleGoal as toggleGoalType,
   toggleGoalVariables
 } from "../../graphql/types/toggleGoal";
-import { goalFragment } from "../../graphql/types/goalFragment";
+import { goalFragment as goalFragmentType } from "../../graphql/types/goalFragment";
 
 const TOGGLE_GOAL = gql`
   mutation toggleGoal($id: String!) {
@@ -16,7 +16,7 @@ const TOGGLE_GOAL = gql`
 `;
 
 interface Props {
-  goal: goalFragment;
+  goal: goalFragmentType;
 }
 
 const Goal: React.FC<Props> = ({ goal }) => {
@@ -44,5 +44,13 @@ const Goal: React.FC<Props> = ({ goal }) => {
     </li>
   );
 };
+
+export const goalFragment = gql`
+  fragment goalFragment on Goal {
+    _id
+    name
+    completed
+  }
+`;
 
 export default Goal;
